@@ -9,10 +9,53 @@ public class CompanyManagement {
         //display all employee
         displayAllEmployee(dao);
         //add new employee
-        addNewEmployee(dao);
+            //addNewEmployee(dao);
+        //find employee by ID
+            //findEmployeeByID(dao);
+        //update employee by ID
+            //updateEmployeeByID(dao);
+        //delete employee by ID
+        deleteEmployeeByID(dao);
 
 
 
+
+    }
+
+    private static void deleteEmployeeByID(EmployeeDAOImpl dao) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter an employee ID that you want to delete: ");
+        int id = Integer.parseInt(sc.nextLine().trim());
+        dao.deleteEmp(id);
+    }
+
+    private static void updateEmployeeByID(EmployeeDAOImpl dao) {
+        //Search employee ID
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter an employee ID: ");
+        int id = Integer.parseInt(sc.nextLine().trim());
+        Employee emp = dao.findEmp(id);
+        if (emp != null){
+            System.out.println(emp.toString());
+        }
+        //get new data
+        System.out.print("Enter new salary for employee ID "
+                +emp.getEmpID()+":");
+        double ns = Double.parseDouble(sc.nextLine().trim());
+        //edit data
+        emp.setSalary(ns);
+        //update data into database
+        dao.updateEmp(emp);
+    }
+
+    private static void findEmployeeByID(EmployeeDAOImpl dao) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter an employee ID: ");
+        int id = Integer.parseInt(sc.nextLine().trim());
+        Employee emp = dao.findEmp(id);
+        if (emp != null){
+            System.out.println(emp.toString());
+        }
 
     }
 
